@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package usergrpc;
+
+option go_package ="/grpc";
+
+service UserAuthService {
+rpc RegisterUser(JsonRequest) returns (JsonResponse){}
+rpc LoginUser(JsonRequest) returns (JsonResponse){}
+rpc ValidateToken(JsonRequest) returns (JsonResponse){}
+rpc BidirectionalStream(stream StreamRequest) returns (stream StreamResponse) {}
+    
+}
+
+
+// message RegisterRequest {
+//     string email =1;
+//     string password =1;
+//     string firstname = 1;
+//     string lastname = 1;
+//     string role = 1;
+
+// }
+
+message JsonResponse {
+    bool    success = 1;
+    string  message = 2;
+    string  data = 3;
+    string  error =4;
+}
+
+message JsonRequest {
+    bool    success = 1;
+    string  message = 2;
+    string  data = 3;
+    string  error = 4;
+}
+
+message StreamRequest {
+    string message = 1;
+  }
+  
+  message StreamResponse {
+    string message = 1;
+  }

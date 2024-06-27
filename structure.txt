@@ -1,0 +1,68 @@
+medicalConsultancyApp/
+├── services/
+│   ├── auth-service/
+│   │   ├── cmd/
+│   │   │   └── main.go
+│   │   ├── internal/
+│   │   │   ├── handlers/
+│   │   │   │   └── auth.go
+│   │   │   ├── models/
+│   │   │   │   └── user.go
+│   │   │   ├── repositories/
+│   │   │   │   └── user.go
+│   │   │   └── transport/
+│   │   │       ├── http/
+│   │   │       │   ├── routes.go
+│   │   │       │   └── middleware.go
+│   │   │       └── grpc/
+│   │   │           ├── server.go
+│   │   │           └── client.go 
+│   │   ├── pkg/
+│   │   │   └── utils/
+│   │   │       ├── utils.go
+│   │   │       └── utils_test.go
+│   │   ├── .env
+│   │   ├── go.mod
+│   │   └── go.sum
+│   ├── user-service/
+│   │   ├── ... (similar structure to auth-service)
+│   ├── doctor-service/
+│   │   ├── ... (similar structure to auth-service)
+│   ├── patient-service/
+│   │   ├── ... (similar structure to auth-service)
+│   ├── appointment-service/
+│   │   ├── ... (similar structure to auth-service)
+│   ├── consultation-service/
+│   │   ├── ... (similar structure to auth-service)
+│   ├── notification-service/
+│   │   ├── ... (similar structure to auth-service)
+│   └── email-service/
+│       ├── ... (similar structure to auth-service)
+├── pkg/
+│   ├── database/
+│   │   └── database.go
+│   └── email/
+│       ├── email.go
+│       └── email_test.go
+├── docker-compose.yml
+├── kubernetes/
+│   ├── deployments/
+│   │   ├── auth-service.yaml
+│   │   ├── user-service.yaml
+│   │   ├── doctor-service.yaml
+│   │   ├── patient-service.yaml
+│   │   ├── appointment-service.yaml
+│   │   ├── consultation-service.yaml
+│   │   ├── notification-service.yaml
+│   │   └── email-service.yaml
+│   ├── services/
+│   │   ├── auth-service.yaml
+│   │   ├── user-service.yaml
+│   │   ├── doctor-service.yaml
+│   │   ├── patient-service.yaml
+│   │   ├── appointment-service.yaml
+│   │   ├── consultation-service.yaml
+│   │   ├── notification-service.yaml
+│   │   └── email-service.yaml
+│   └── ingress.yaml
+└── README.md

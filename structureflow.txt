@@ -1,0 +1,134 @@
+medicalConsultancyApp/
+├── api_gateway/
+│   ├── authentication/
+│   │   ├── token_validation.go
+│   │   └── auth_middleware.go
+│   ├── routing/
+│   │   ├── route_config.go
+│   │   └── route_handlers.go
+│   ├── rate_limiting/
+│   │   ├── rate_limit.go
+│   │   └── rate_limit_config.go
+│   ├── load_balancing/
+│   │   ├── load_balancer.go
+│   │   └── lb_config.go
+│   ├── logging/
+│   │   ├── request_logger.go
+│   │   └── log_config.go
+│   └── monitoring/
+│       ├── metrics_collector.go
+│       └── health_check.go
+├── user-service/
+│   ├── signup/
+│   │   ├── authentication/
+│   │   │   ├── otp_generation/
+│   │   │   │   ├── generate_otp.go
+│   │   │   │   └── send_otp.go
+│   │   │   ├── otp_verification/
+│   │   │   │   ├── verify_otp.go
+│   │   │   │   └── handle_verification.go
+│   │   │   ├── token_generation/
+│   │   │   │   ├── generate_token.go
+│   │   │   │   └── token_utils.go
+│   │   │   ├── account_creation/
+│   │   │   │   ├── create_account.go
+│   │   │   │   └── save_user_details.go
+│   │   │   └── social_auth/
+│   │   │       ├── google_auth/
+│   │   │       │   └── google_oauth.go
+│   │   │       └── facebook_auth/
+│   │   │           └── facebook_oauth.go
+│   └── user_profile/
+│       ├── profile_setup/
+│       │   ├── create_profile.go
+│       │   └── update_profile.go
+│       └── medical_history/
+│           ├── add_history.go
+│           └── manage_records.go
+├── doctor-service/
+│   ├── profile_management/
+│   │   ├── create_profile.go
+│   │   └── update_profile.go
+│   ├── availability/
+│   │   ├── set_availability.go
+│   │   └── update_availability.go
+│   ├── consultations/
+│       ├── view_appointments.go
+│       └── manage_consultations.go
+├── patient-service/
+│   ├── profile_management/
+│   │   ├── create_profile.go
+│   │   └── update_profile.go
+│   ├── medical_records/
+│   │   ├── upload_records.go
+│   │   └── view_records.go
+│   ├── consultations/
+│       ├── view_appointments.go
+│       └── book_consultation.go
+├── appointment-service/
+│   ├── appointment_management/
+│   │   ├── create_appointment.go
+│   │   ├── update_appointment.go
+│   │   └── cancel_appointment.go
+│   ├── notifications/
+│   │   ├── send_reminder.go
+│   │   └── schedule_reminder.go
+│   ├── availability/
+│       ├── check_availability.go
+│       └── manage_slots.go
+├── search_professionals/
+│   ├── search_filters/
+│   │   ├── location_filter.go
+│   │   ├── specialty_filter.go
+│   │   └── rating_filter.go
+│   ├── professional_profiles/
+│   │   ├── fetch_profile.go
+│   │   └── display_profile.go
+│   └── appointment_booking/
+│       ├── check_availability.go
+│       ├── book_appointment.go
+│       └── manage_appointments.go
+├── consultations/
+│   ├── virtual_consultation/
+│   │   ├── video_call/
+│   │   │   ├── initiate_video.go
+│   │   │   └── video_utils.go
+│   │   └── text_chat/
+│   │       ├── start_chat.go
+│   │       └── chat_history.go
+│   ├── medical_records/
+│   │   ├── share_records.go
+│   │   └── access_records.go
+│   ├── prescriptions/
+│   │   ├── create_prescription.go
+│   │   └── view_prescription.go
+│   └── treatment_plans/
+│       ├── create_plan.go
+│       └── view_plan.go
+├── payments/
+│   ├── payment_methods/
+│   │   ├── add_method.go
+│   │   └── manage_methods.go
+│   ├── payment_processing/
+│   │   ├── process_payment.go
+│   │   └── payment_gateway_integration.go
+│   └── invoices/
+│       ├── generate_invoice.go
+│       └── view_invoices.go
+├── ratings_reviews/
+│   ├── rate_professional/
+│   │   ├── submit_rating.go
+│   │   └── view_ratings.go
+│   └── write_review/
+│       ├── submit_review.go
+│       └── view_reviews.go
+└── notifications/
+    ├── appointment_reminders/
+    │   ├── send_reminder.go
+    │   └── schedule_reminder.go
+    ├── prescription_refills/
+    │   ├── refill_notification.go
+    │   └── schedule_refill_notification.go
+    └── general_notifications/
+        ├── send_notification.go
+        └── manage_notifications.go

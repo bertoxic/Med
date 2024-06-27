@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+
+  auth-service:
+    build:
+      context: ./../services/auth
+      dockerfile: ./../auth/authentication-service.dockerfile
+    restart: always
+    ports:
+      - "8080:8085"
+    deploy:
+      mode: replicated
+      replicas: 1
