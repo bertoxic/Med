@@ -25,6 +25,9 @@ func main() {
 		log.Println("error occured while setting env", err)
 	}
     port := os.Getenv("PORT")
+    if port == "" {
+        port = "9000" // Default to 5001 if PORT is not set
+    }
 	portnum, err := strconv.Atoi(port)
 
 
