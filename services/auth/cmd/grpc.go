@@ -7,11 +7,12 @@ import (
 	"log"
 	"net"
 	"net/http"
+	"os"
 	"time"
 
 	config "github.com/bertoxic/med/services/authentication/configs"
-	handler "github.com/bertoxic/med/services/authentication/internal/handlers"
 	"github.com/bertoxic/med/services/authentication/grpc"
+	handler "github.com/bertoxic/med/services/authentication/internal/handlers"
 	"github.com/bertoxic/med/services/authentication/internal/models"
 	"github.com/dgrijalva/jwt-go"
 	"go.mongodb.org/mongo-driver/bson"
@@ -336,13 +337,22 @@ func ValidateTokenViaGRPC(signedToken string) (*models.SignedDetails, string) {
 
 
 func grpcListen(){
-	lis, err := net.Listen("tcp", ":5001")
-	if err != nil {
-		log.Printf("did not listen failed dto isten: %v", err)
-	}
+	port := os.Getenv("GRPC_PORT")	
+    if port == "" {
+        port = "5001" // Default to 5001 if PORT is not set
+    }
+
+    lis, err := net.Listen("tcp", ":"+port)
+    if err != nil {
+        log.Fatalf("failed to listen to: %v, error is : %v", port,err)
+    }
+	//lis, err := net.Listen("tcp", ":5001")
+	// if err != nil {
+	// 	log.Printf("did not listen failed dto isten: %v", err)
+	// }
 	s := gp.NewServer()
 	grpc.RegisterUserAuthServiceServer(s, &UserServer{})
-	log.Printf("server listening at %v", lis.Addr())
+	log.Printf("server listening at %v on port %v", lis.Addr(),port)
 	if err := s.Serve(lis); err != nil {
 		log.Printf("failed to serve: %v", err)
 	}
