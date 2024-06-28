@@ -24,6 +24,19 @@ func main() {
 	if err != nil {
 		log.Println("error occured while setting env", err)
 	}
+
+    go func() {
+        http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
+            w.WriteHeader(http.StatusOK)
+        })
+        if err := http.ListenAndServe(":8080", nil); err != nil {
+            log.Fatalf("Failed to start HTTP server: %v", err)
+        }
+    }()
+
+
+
+
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*20)
 	defer cancel()
 	client := database.NewMongodClient(ctx, app.Config.MONGODB_URI)
@@ -47,5 +60,5 @@ func main() {
 		log.Println("Eroooxxx " + err.Error())
 		return
 	}
-    
+
 }

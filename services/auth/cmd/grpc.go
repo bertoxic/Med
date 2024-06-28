@@ -339,26 +339,51 @@ func ValidateTokenViaGRPC(signedToken string) (*models.SignedDetails, string) {
 }
 
 
-func grpcListen(){
-	port := os.Getenv("GRPC_PORT")	
+
+func grpcListen() {
+    port := os.Getenv("GRPC_PORT")
     if port == "" {
-        port = "10000" // Default to 10000 if PORT is not set
+        port = "10000" // Default to 10000 if GRPC_PORT is not set
     }
 
-    lis, err := net.Listen("tcp", "0.0.0.0:"+port)
+    lis, err := net.Listen("tcp4", "0.0.0.0:"+port)
     if err != nil {
-        log.Fatalf("failed to listen to: %v, error is : %v", port,err)
+        log.Fatalf("failed to listen on port %v: %v", port, err)
     }
-	//lis, err := net.Listen("tcp", ":5001")
-	// if err != nil {
-	// 	log.Printf("did not listen failed dto isten: %v", err)
-	// }
-	s := gp.NewServer()
-	log.Printf("running on port..>> %s",port)
-	grpc.RegisterUserAuthServiceServer(s, &UserServer{})
-	log.Printf("server listening at %v on port %v", lis.Addr(),port)
-	if err := s.Serve(lis); err != nil {
-		log.Printf("failed to serve: %v", err)
-	}
 
+    s := gp.NewServer(
+        gp.MaxRecvMsgSize(1024*1024*10), // 10MB
+        gp.MaxSendMsgSize(1024*1024*10), // 10MB
+    )
+    log.Printf("running on port..>> %s", port)
+    grpc.RegisterUserAuthServiceServer(s, &UserServer{})
+    log.Printf("server listening at %v on port %v", lis.Addr(), port)
+
+    if err := s.Serve(lis); err != nil {
+        log.Fatalf("failed to serve: %v", err)
+    }
 }
+
+// func grpcListen(){
+// 	port := os.Getenv("GRPC_PORT")	
+//     if port == "" {
+//         port = "10000" // Default to 10000 if PORT is not set
+//     }
+
+//     lis, err := net.Listen("tcp", "0.0.0.0:"+port)
+//     if err != nil {
+//         log.Fatalf("failed to listen to: %v, error is : %v", port,err)
+//     }
+// 	//lis, err := net.Listen("tcp", ":5001")
+// 	// if err != nil {
+// 	// 	log.Printf("did not listen failed dto isten: %v", err)
+// 	// }
+// 	s := gp.NewServer()
+// 	log.Printf("running on port..>> %s",port)
+// 	grpc.RegisterUserAuthServiceServer(s, &UserServer{})
+// 	log.Printf("server listening at %v on port %v", lis.Addr(),port)
+// 	if err := s.Serve(lis); err != nil {
+// 		log.Printf("failed to serve: %v", err)
+// 	}
+
+// }
