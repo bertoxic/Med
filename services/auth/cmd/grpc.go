@@ -342,7 +342,7 @@ func ValidateTokenViaGRPC(signedToken string) (*models.SignedDetails, string) {
 func grpcListen(){
 	port := os.Getenv("GRPC_PORT")	
     if port == "" {
-        port = "5001" // Default to 5001 if PORT is not set
+        port = "10000" // Default to 10000 if PORT is not set
     }
 
     lis, err := net.Listen("tcp", ":"+port)
