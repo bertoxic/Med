@@ -24,12 +24,13 @@ func main() {
 	if err != nil {
 		log.Println("error occured while setting env", err)
 	}
-
+    port := os.Getenv("PORT")
+	portnum, err := strconv.Atoi(port)
     go func() {
         http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
             w.WriteHeader(http.StatusOK)
         })
-        if err := http.ListenAndServe(":8080", nil); err != nil {
+        if err := http.ListenAndServe(":"+port, nil); err != nil {
             log.Fatalf("Failed to start HTTP server: %v", err)
         }
     }()
@@ -43,10 +44,9 @@ func main() {
 	app.InProduction = false
 	app.Client = client
 	NewDataB(app)
-	grpcListen()
+	
 	routes := routes.Router()
-	port := os.Getenv("PORT")
-	portnum, err := strconv.Atoi(port)
+
 	if err != nil {
 		log.Println("error getting or converting port")
 	}
@@ -60,5 +60,6 @@ func main() {
 		log.Println("Eroooxxx " + err.Error())
 		return
 	}
+    grpcListen()
 
 }
