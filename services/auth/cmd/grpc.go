@@ -345,7 +345,7 @@ func grpcListen(){
         port = "10000" // Default to 10000 if PORT is not set
     }
 
-    lis, err := net.Listen("tcp", ":"+port)
+    lis, err := net.Listen("tcp", "0.0.0.0:"+port)
     if err != nil {
         log.Fatalf("failed to listen to: %v, error is : %v", port,err)
     }
