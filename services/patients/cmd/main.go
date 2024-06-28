@@ -10,7 +10,6 @@ import (
 	"github.com/joho/godotenv"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
-	//"google.golang.org/grpc/credentials/insecure"
 )
 
 func main() {
@@ -28,7 +27,11 @@ func main() {
         Addr: "0.0.0.0:8086",
         Handler: r,
     }
-    conn, err := grpc.NewClient(":"+port,grpc.WithTransportCredentials(insecure.NewCredentials()))
+    // config := &tls.Config{
+    //     InsecureSkipVerify: false,
+    // }
+    // conn, err := grpc.Dial(":"+port, grpc.WithTransportCredentials(credentials.NewTLS(config)))
+     conn, err := grpc.NewClient(":"+port,grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Printf("grpc did not connect: %v", err)
 	}
