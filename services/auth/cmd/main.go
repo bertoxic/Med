@@ -47,6 +47,7 @@ func main() {
    go grpcListen()
 	err = srv.ListenAndServe()
 	if err != nil {
+        log.Println("vvvvvvvv",portnum)
 		log.Println("Eroooxxx " + err.Error())
 		return
 	}
