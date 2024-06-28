@@ -1,7 +1,6 @@
 package main
 
 import (
-	"crypto/tls"
 	"log"
 	"net/http"
 	"os"
@@ -10,7 +9,7 @@ import (
 	routes "github.com/bertoxic/med/services/patient-service/internal/transport/http"
 	"github.com/joho/godotenv"
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials"
+	//"google.golang.org/grpc/credentials"
 	//"google.golang.org/grpc/credentials/insecure"
 )
 
@@ -31,8 +30,12 @@ func main() {
     }
     conn, err := grpc.Dial(
         "med-o9j9.onrender.com:443",
-        grpc.WithTransportCredentials(credentials.NewTLS(&tls.Config{})),
+        grpc.WithInsecure(),
     )
+    // conn, err := grpc.Dial(
+    //     "med-o9j9.onrender.com:443",
+    //     grpc.WithTransportCredentials(credentials.NewTLS(&tls.Config{})),
+    // )
     //  conn, err := grpc.NewClient("med-o9j9.onrender.com:"+"5001",grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Printf("grpc did not connect: %v", err)
