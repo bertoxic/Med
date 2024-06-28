@@ -32,7 +32,7 @@ func Initx() {
 	defer conn.Close()
 
 	// Send the initial greeting
-	if err = conn.Hello("localhost"); err != nil {
+	if err = conn.Hello(" 0.0.0.0"); err != nil {
 		log.Printf("Failed to send HELO: %v", err)
 		return
 	}

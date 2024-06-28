@@ -42,7 +42,7 @@ func GenerateOTP(user models.UserDetails, length int) (string, error) {
 	// }
 	// log.Println(otpNum)
 	// otp := otpNum[:length]
-	authURL := "http://localhost:8085/otp"
+	authURL := "http:// 0.0.0.0:8085/otp"
 	request, err := http.NewRequest(http.MethodPost, authURL, bytes.NewBuffer(jsonData))	
 	if err != nil {
 		return "", err

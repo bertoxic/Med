@@ -107,7 +107,7 @@ func GenerateTokenViaRestAPI(user UserDetails) (Tokens, error) {
 		fmt.Printf("error: unable to marshall userdetails")
 		return Tokens{}, err
 	}
-	authServicsURL := "http://localhost:8085/signup"
+	authServicsURL := "http:// 0.0.0.0:8085/signup"
 	request, err := http.NewRequest(http.MethodPost, authServicsURL, bytes.NewBuffer(jsonData))
 	if err != nil {
 		fmt.Printf("error: unable to send request to auth")
