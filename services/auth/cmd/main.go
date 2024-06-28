@@ -26,16 +26,6 @@ func main() {
 	}
     port := os.Getenv("PORT")
 	portnum, err := strconv.Atoi(port)
-    go func() {
-        http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
-            w.WriteHeader(http.StatusOK)
-        })
-        if err := http.ListenAndServe(":8080", nil); err != nil {
-            log.Fatalf("Failed to start HTTP server: %v", err)
-        }
-    }()
-
-
 
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*20)
