@@ -42,6 +42,7 @@ func NewDataB(appconfig *config.AppConfig) {
 }
 
 func (s *UserServer) RegisterUser(ctx context.Context, req *grpc.JsonRequest) (*grpc.JsonResponse, error) {
+	log.Println("in reg user now")
 	user := &models.UserDetails{}
 	jsonreq := req.Data
 	err := json.Unmarshal([]byte(jsonreq), user)	
@@ -128,6 +129,8 @@ func (s *UserServer) RegisterUser(ctx context.Context, req *grpc.JsonRequest) (*
 
 
 func (us *UserServer) LoginUser(ctx context.Context, req *grpc.JsonRequest) (*grpc.JsonResponse, error) {
+	log.Println("in login user now")
+
 	 user := models.UserDetails{}
 	 Jsondata := &models.JsonResponse{}
 	if !req.Success {
@@ -351,6 +354,7 @@ func grpcListen(){
 	// 	log.Printf("did not listen failed dto isten: %v", err)
 	// }
 	s := gp.NewServer()
+	log.Printf("running on port..>> %s",port)
 	grpc.RegisterUserAuthServiceServer(s, &UserServer{})
 	log.Printf("server listening at %v on port %v", lis.Addr(),port)
 	if err := s.Serve(lis); err != nil {
