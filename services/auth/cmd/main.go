@@ -44,7 +44,7 @@ func main() {
 		Addr:    ":" + fmt.Sprintf("%d", portnum),
 		Handler: routes,
 	}
-    grpcListen()
+   go grpcListen()
 	err = srv.ListenAndServe()
 	if err != nil {
 		log.Println("Eroooxxx " + err.Error())

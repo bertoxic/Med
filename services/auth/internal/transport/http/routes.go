@@ -25,6 +25,7 @@ func Router() http.Handler {
 			"message": "authenticated no wow",
 		})
 	})
+	
 	router.POST("/signup", handler.SignUp)
 	router.POST("/otp", handler.GenerateOTPResponse)
 	

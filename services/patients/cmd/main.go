@@ -30,6 +30,7 @@ func main() {
     }
     conn, err := grpc.Dial(
         "med-o9j9.onrender.com:443",
+        //":5002",
         grpc.WithInsecure(),
     )
     // conn, err := grpc.Dial(
